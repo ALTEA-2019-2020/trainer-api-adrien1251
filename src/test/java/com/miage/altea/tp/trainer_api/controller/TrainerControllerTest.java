@@ -1,15 +1,13 @@
 package com.miage.altea.tp.trainer_api.controller;
 
+import com.miage.altea.tp.trainer_api.bo.Trainer;
 import com.miage.altea.tp.trainer_api.service.TrainerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -68,6 +66,47 @@ class TrainerControllerTest {
         var getTrainer =
                 TrainerController.class.getDeclaredMethod("getTrainer", String.class);
         var getMapping = getTrainer.getAnnotation(GetMapping.class);
+
+        var pathVariableAnnotation = getTrainer.getParameters()[0].getAnnotation(PathVariable.class);
+
+        assertNotNull(getMapping);
+        assertArrayEquals(new String[]{"/{name}"}, getMapping.value());
+
+        assertNotNull(pathVariableAnnotation);
+    }
+
+    @Test
+    void createTrainer_shouldBeAnnotated() throws NoSuchMethodException {
+        var getTrainer = TrainerController.class.getDeclaredMethod("createTrainer", Trainer.class);
+        var getMapping = getTrainer.getAnnotation(PostMapping.class);
+
+        var requestBodyAnnotation = getTrainer.getParameters()[0].getAnnotation(RequestBody.class);
+
+        assertNotNull(getMapping);
+        assertArrayEquals(new String[]{"/"}, getMapping.value());
+
+        assertNotNull(requestBodyAnnotation);
+    }
+
+    @Test
+    void updateTrainer_shouldBeAnnotated() throws NoSuchMethodException {
+        var getTrainer =
+                TrainerController.class.getDeclaredMethod("updateTrainer", Trainer.class);
+        var getMapping = getTrainer.getAnnotation(PutMapping.class);
+
+        var requestBodyAnnotation = getTrainer.getParameters()[0].getAnnotation(RequestBody.class);
+
+        assertNotNull(getMapping);
+        assertArrayEquals(new String[]{"/"}, getMapping.value());
+
+        assertNotNull(requestBodyAnnotation);
+    }
+
+    @Test
+    void deleteTrainer_shouldBeAnnotated() throws NoSuchMethodException {
+        var getTrainer =
+                TrainerController.class.getDeclaredMethod("deleteTrainer", String.class);
+        var getMapping = getTrainer.getAnnotation(DeleteMapping.class);
 
         var pathVariableAnnotation = getTrainer.getParameters()[0].getAnnotation(PathVariable.class);
 

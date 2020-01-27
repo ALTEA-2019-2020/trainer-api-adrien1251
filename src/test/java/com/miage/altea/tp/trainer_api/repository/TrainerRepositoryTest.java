@@ -55,5 +55,4 @@ class TrainerRepositoryTest {
         assertEquals("Misty", saved.getName());
         assertEquals(2, saved.getTeam().size());
     }
-
 }

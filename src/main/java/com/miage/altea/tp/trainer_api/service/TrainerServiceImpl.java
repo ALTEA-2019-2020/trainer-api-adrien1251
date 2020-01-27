@@ -29,6 +29,21 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public Trainer createTrainer(Trainer trainer) {
+        if(trainerRepository.findById(trainer.getName()).isPresent()) throw new RuntimeException("Trainer " + trainer.getName()+ " already present, want you update it instead?");
         return trainerRepository.save(trainer);
+    }
+
+    @Override
+    public Trainer update(Trainer trainer) {
+        if(!trainerRepository.findById(trainer.getName()).isPresent()) throw new RuntimeException("Trainer " + trainer.getName()+ " no present, want you create it instead?");
+        return trainerRepository.save(trainer);
+    }
+
+    @Override
+    public void delete(String name) {
+        Trainer trainer = trainerRepository.findById(name)
+                .orElseThrow(() -> new RuntimeException("Trainer : " + name + " not found, we can't delete it"));
+
+        trainerRepository.delete(trainer);
     }
 }
