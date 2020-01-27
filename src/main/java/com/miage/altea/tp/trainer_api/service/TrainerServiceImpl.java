@@ -23,8 +23,8 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public Trainer getTrainer(String name) {
-        return trainerRepository.findById(name).orElse(new Trainer());
-//                .orElseThrow(() -> new RuntimeException("Trainer " + name + " not found"));
+        return trainerRepository.findById(name)
+                .orElseThrow(() -> new RuntimeException("Trainer " + name + " not found"));
     }
 
     @Override
