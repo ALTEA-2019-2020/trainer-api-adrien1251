@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "f200421c-412b-4928-80b3-15fea37cf55e",
+		"name": "altaeTrainerApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All trainers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b727251e-ff67-43fa-bfd3-470c3d33271d",
+						"exec": [
+							"pm.test(\"Sacha trainer\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].name).to.eq(\"Ash\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Misty trainer\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[1].name).to.eq(\"Misty\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/trainers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"trainers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One trainer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b727251e-ff67-43fa-bfd3-470c3d33271d",
+						"exec": [
+							"pm.test(\"Ash trainer\", function () {\r",
+							"    var ash = pm.response.json();\r",
+							"    pm.expect(ash.name).to.eq(\"Ash\");\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/trainers/Ash",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"trainers",
+						"Ash"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_dresseur",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b727251e-ff67-43fa-bfd3-470c3d33271d",
+						"exec": [
+							"pm.test(\"Create trainer Peter\", function () {\r",
+							"    var peter = pm.response.json();\r",
+							"    pm.expect(peter.name).to.eq(\"Peter\");\r",
+							"    pm.expect(peter.team.length).to.eq(5);\r",
+							"    pm.expect(peter.team[0].pokemonTypeId).to.eq(130);\r",
+							"    pm.expect(peter.team[0].level).to.eq(58);\r",
+							"    pm.expect(peter.team[1].pokemonTypeId).to.eq(148);\r",
+							"    pm.expect(peter.team[1].level).to.eq(56);\r",
+							"    pm.expect(peter.team[2].pokemonTypeId).to.eq(148);\r",
+							"    pm.expect(peter.team[2].level).to.eq(56);\r",
+							"    pm.expect(peter.team[3].pokemonTypeId).to.eq(142);\r",
+							"    pm.expect(peter.team[3].level).to.eq(60);\r",
+							"    pm.expect(peter.team[4].pokemonTypeId).to.eq(149);\r",
+							"    pm.expect(peter.team[4].level).to.eq(62);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Peter\",\n\t\"team\": [\n\t\t{\n\t\t\t\"pokemonTypeId\": 130,\n\t\t\t\"level\": 58\n\t\t},\n\t\t{\n\t\t\t\"pokemonTypeId\": 148,\n\t\t\t\"level\": 56\n\t\t},\n\t\t{\n\t\t\t\"pokemonTypeId\": 148,\n\t\t\t\"level\": 56\n\t\t},\n\t\t{\n\t\t\t\"pokemonTypeId\": 142,\n\t\t\t\"level\": 60\n\t\t},\n\t\t{\n\t\t\t\"pokemonTypeId\": 149,\n\t\t\t\"level\": 62\n\t\t}\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/trainers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"trainers",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
