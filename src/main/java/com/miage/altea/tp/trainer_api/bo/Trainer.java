@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,6 +19,9 @@ import java.util.List;
 public class Trainer {
     @Id
     private String name;
+
+    @Column
+    private String password;
 
     @ElementCollection
     private List<Pokemon> team;
