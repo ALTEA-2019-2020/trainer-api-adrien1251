@@ -30,13 +30,13 @@ public class TrainerApi {
             var ash = Trainer.builder().name("Ash").build();
             var pikachu = new Pokemon(25, 18);
             ash.setTeam(List.of(pikachu));
-            ash.setPassword(bCryptPasswordEncoder.encode("ash_password"));
+            ash.setPassword(bCryptPasswordEncoder.encode("4sh"));
 
             var misty = Trainer.builder().name("Misty").build();
             var staryu = new Pokemon(120, 18);
             var starmie = new Pokemon(121, 21);
             misty.setTeam(List.of(staryu, starmie));
-            misty.setPassword(bCryptPasswordEncoder.encode("misty_password"));
+            misty.setPassword(bCryptPasswordEncoder.encode("m1sty"));
 
             // save a couple of trainers
             repository.save(ash);
